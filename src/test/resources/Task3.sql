@@ -1,0 +1,25 @@
+-- Запрос получения процента заказов с промокодамив общем виде
+select (select count(*) from orders where orders.promocode_id not null) * 100 /count(*)  as 'percent' from orders;
+
+-- Более детальный пример с другим вариантом запроса для получения точного значения доли
+-- create table  orders (order_id int , promocode_id int);
+-- create table  promocodes (promocode_id int, name text, discount int);
+--
+-- insert into orders values(1, 1);
+-- insert into orders values(2, 2);
+-- insert into orders values(3, 3);
+-- insert into orders values(4, 4);
+-- insert into orders values(5, 1);
+-- insert into orders values(6, NULL);
+-- insert into orders values(7, NULL);
+-- insert into orders values(8, NULL);
+-- insert into orders values(9, NULL);
+-- insert into orders values(10, NULL);
+-- insert into orders values(11, NULL);
+--
+-- insert into promocodes values(1, 'купон на 200', 200);
+-- insert into promocodes values(2, 'купон на 300', 300);
+-- insert into promocodes values(3, 'купон на 400', 400);
+-- insert into promocodes values(4, 'купон на 500', 500);
+--
+-- select ROUND((cast((select count(*) from orders where orders.promocode_id not null) as float)/cast(count(*) as float)) *100 , 4 ) as 'portion' from orders;
